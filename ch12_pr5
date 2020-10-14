@@ -1,0 +1,42 @@
+#include<stdio.h>
+#define N 100
+
+int main(void)
+{
+	char vect[N],ch;
+	char *p,*q,*t;
+	int i=0;
+	printf("Enter a sentence: ");
+	for (p = vect; p < vect + N; p++) {
+		*p = getchar();
+		if ((*p == '!') || (*p == '?') || (*p == '.'))
+		{
+			ch = *p;//char형 변수 하나 잡아서 *p에 나중에 넣는 방법도 있다. 그러면 여기서 break 써서 탈출가능
+		}
+		else if (*p == '\n')
+			break;//char형 변수 하나 잡아서 *p에 나중에 넣었으면 불필요한 부분임.
+		//배열 크기 구하는 변수 선언하면 편함
+	}
+	for (q = (p-2); q >= vect; q--) {//배열 크기 구하는 변수 있으면 굳이 q추가 안해도 됨
+		if (q == vect)
+		{
+			for (t = q; t <= q + i; t++)
+				printf("%c", *t);
+		}
+		else if (*q == ' ')
+		{
+			for (t = q + 1; t < q + i + 1; t++)
+			{
+				printf("%c", *t);
+			}
+			printf("%c", *q);
+			i = 0;
+		}	
+		else
+		{
+			i++;
+		}
+	}
+	printf("%c", ch);
+	return 0;
+}
