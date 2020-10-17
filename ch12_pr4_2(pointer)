@@ -1,0 +1,20 @@
+#include<stdio.h>
+#define N 100
+int main(void) {
+	char *q;
+	int cnt = 5;
+	char a[5] = { 'a','b','c','b','a' };
+for (q = a; q <= a + (cnt - 1); q++)
+{
+	if (*q != (*(q + cnt - 1 - (q - a))))
+	{
+		printf("Not a Palindrome\n");
+		break;
+	}
+	else if ((q - a) == (cnt - 1) / 2)
+		printf("Palindrome\n");
+	
+}
+
+return 0;
+}
