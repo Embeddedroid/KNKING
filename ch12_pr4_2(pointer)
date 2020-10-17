@@ -6,7 +6,7 @@ int main(void) {
 	char a[5] = { 'a','b','c','b','a' };
 for (q = a; q <= a + (cnt - 1); q++)
 {
-	if (*q != (*(q + cnt - 1 - (q - a))))
+	if (*q != *(a+((a+cnt)-q)-1))
 	{
 		printf("Not a Palindrome\n");
 		break;
