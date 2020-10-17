@@ -1,0 +1,49 @@
+#include<stdio.h>
+#define N 100
+int main(void)
+{
+	char a[N];
+	int i, k, n=0, cnt = 0;
+	char *p, *q;
+
+	printf("Enter a message: ");
+	for (p = a; p < a + N; p++)
+	{
+		*p = getchar();
+		n++;
+		if (*p == '\n')
+			break;
+	}
+	for (p = a; p < a + n; p++)
+	{
+
+		if ('a' <= *p && *p <= 'z')
+		{
+			*(a + cnt) = *p;
+			cnt++;
+		}
+		else if ('A' <= *p && *p <= 'Z')
+		{
+			*(a + cnt) = (*p + ('a' - 'A'));
+			cnt++;
+		}
+		else if (*p == '\n')
+			break;
+		else
+			continue;
+	}
+
+	for (q = a; q <= a + (cnt - 1); q++)
+	{
+		if (*q != (*(q + cnt - 1 - (q-a))))
+		{
+			printf("Not a Palindrome\n");
+			break;
+		}
+		else if ((q - a) == (cnt - 1) / 2)
+			printf("Palindrome\n");
+		
+	}
+
+	return 0;
+}
