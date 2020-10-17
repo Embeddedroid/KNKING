@@ -1,0 +1,18 @@
+#include<stdio.h>
+#define N 100
+int main(void) {
+	int cnt = 5;
+	char a[5] = { 'a','b','c','b','a' };
+	for (int i = 0; i <= (cnt - 1); i++)
+	{
+		if (a[i] != (a[cnt - 1 - i]))
+		{
+			printf("Not a Palindrome\n");
+			break;
+		}
+		else if (i == (cnt - 1) / 2)
+			printf("Palindrome\n");
+
+	}
+	return 0;
+}
