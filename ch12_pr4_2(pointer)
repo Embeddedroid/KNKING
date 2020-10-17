@@ -1,20 +1,23 @@
 #include<stdio.h>
+#include<stdbool.h>
 #define N 100
 int main(void) {
+	bool is_palindrome=true;
 	char *q;
 	int cnt = 5;
 	char a[5] = { 'a','b','c','b','a' };
-for (q = a; q <= a + (cnt - 1); q++)
+for (q = a; q < a + cnt/2; q++)
 {
-	if (*q != *(a+((a+cnt)-q)-1))
+	if (*q != (*(q + cnt - 1 - (q - a))))
 	{
-		printf("Not a Palindrome\n");
+		is_palindrome=false;
 		break;
 	}
-	else if ((q - a) == (cnt - 1) / 2)
-		printf("Palindrome\n");
-	
 }
 
+if(is_palindrome==false)
+	printf("Not a Palindrome");
+else
+	printf("Palindrome");
 return 0;
 }
