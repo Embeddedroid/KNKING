@@ -1,0 +1,32 @@
+#include<stdio.h>
+#define N 100
+void remove_filename(char *url);
+int main(void)
+{
+	char url[N],ch,*p=url;
+	while ((ch = getchar()) != '\n')
+		*p++ = ch;
+	*p = '\0';
+	remove_filename(url);
+	p = url;
+	for(;*p;)
+		printf("%c", *p++);
+	return 0;
+}
+void remove_filename(char *url)
+{
+	char *p = url;
+	while (*p)
+		p++;
+	int n=p - url;
+	p = url;
+	for (p += n; p >= url; p--)
+	{
+		if (*p == '/')
+		{
+			*p = '\0'; break;
+		}
+	}
+	
+	return;
+}
