@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <string.h>
+
+void get_extension(/*const*/ char *file_name, char *extension);
+
+int main(void)
+{
+	char file_name[100] = "memo.txt",extension[100];
+	get_extension(file_name,extension);
+	int n = strlen(extension);
+	for(int i=0;i<n;i++)
+		printf("%c", *(extension+i));
+	return 0;
+}
+void get_extension(/*const*/  char *file_name, char *extension)
+{
+	char *p=file_name;
+	for (; *p; p++) {
+		if (*p == '.')
+			break;
+	}
+	p++;
+	strcpy(extension, p);
+	return;
+}
