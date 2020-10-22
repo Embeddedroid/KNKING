@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int my_strcmp(char *s1, char *s2)
+{
+	for (;*s1==*s2;)
+	{
+		if (*s1 == '\0')
+			return 0;
+		s1++; s2++;
+	}
+	return *s1 - *s2;
+}
+int main(void)
+{
+	char str1[100]="Same", str2[100]="Sam";
+	int jack=my_strcmp(str1, str2);
+	return 0;
+}
