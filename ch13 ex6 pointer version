@@ -1,0 +1,36 @@
+#include<stdio.h>
+#define N 100
+void censor(char *a);
+int main(void)
+{
+	char vect[N], ch, *p = vect;
+	printf("Enter a string: ");
+	while ((ch = getchar()) != '\n')
+	{
+		*p++ = ch;
+	}
+	*p = '\0';
+	
+	censor(vect);
+
+	for (p = vect; *p; p++)
+	{
+		printf("%c", *p);
+	}
+
+	return 0;
+}
+void censor(char *a)
+{
+	while(*a)
+	{
+		if (*(a) == 'f'&&*(a + 1) == 'o'&&*(a + 2) == 'o')
+		{
+			*a = *(a + 1) = *(a + 2) = 'x';
+			a += 3;
+		}
+		else
+			a++;
+	}
+	return;
+}
