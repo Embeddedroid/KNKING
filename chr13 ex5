@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+#define N 100
+
+void capitalize(char *p);
+int main(void)
+{
+	char vect[N], *p = vect;
+	char ch;
+	int i = 0;
+	printf("Enter your arbitrary string: ");
+	while ((ch = getchar()) != '\n')
+	{
+		*p++ = ch;
+	}
+	*++p = '\0';
+	capitalize(vect);
+	for (p = vect; *p; p++)
+	{
+		printf("%c", *p);
+	}
+	return 0;
+}
+void capitalize(char *a)
+{
+	int i;
+	char *p = a;
+	for (;*p;p++)
+	{
+		*p = toupper(*p);
+	}
+	return;
+}
