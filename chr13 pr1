@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<string.h>
+#define N 20
+int main(void)
+{
+	char ch,vect[N+1],
+		smallest_word[N+1],largest_word[N+1]
+		, *p = vect;
+	int n = 0;
+	while (strlen(vect)!=4)
+	{
+		if (n == 0)
+		{
+			while ((ch = getchar()) != '\n')
+			{
+				*p++ = ch;
+			}
+			*p = '\0';
+			strcpy(largest_word, vect);
+			strcpy(smallest_word, vect);
+			
+		}
+		else
+		{
+			while ((ch = getchar()) != '\n')
+			{
+				*p++ = ch;
+			}*p = '\0';
+			if (strcmp(smallest_word, vect) > 0)
+				strcpy(smallest_word, vect);
+			else if (strcmp(largest_word, vect) < 0)
+				strcpy(largest_word, vect);
+		}
+		n++;
+		p = vect;
+	}
+	printf("smallest word: %s", smallest_word);
+	printf("largest word: %s", largest_word);
+	return 0;
+}
