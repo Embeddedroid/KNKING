@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+#define N 100
+int compute_scrabble_value(const char *word);
+int main(void)
+{
+	char str[N];
+	int n=0;
+
+	printf("Enter a word: ");
+	scanf("%s", str);
+	n = compute_scrabble_value(str);
+	printf("Scrabble Value: %d", n);
+	return 0;
+}
+int compute_scrabble_value(const char *word)
+{
+	int num = 0;
+	for (; *word;word++)
+	{
+		if (toupper(*word) == 'A' || toupper(*word) == 'E' ||
+			toupper(*word) == 'I' ||
+			toupper(*word) == 'L' || toupper(*word) == 'N' ||
+			toupper(*word) == 'O' ||
+			toupper(*word) == 'R' || toupper(*word) == 'S' ||
+			toupper(*word) == 'T' ||
+			toupper(*word) == 'U')
+			num++;
+		else if (toupper(*word) == 'D' || toupper(*word) == 'G')
+			num += 2;
+		else if (toupper(*word) == 'B' || toupper(*word) == 'C' ||
+			toupper(*word) == 'M' ||
+			toupper(*word) == 'P')
+			num += 3;
+		else if (toupper(*word) == 'F' || toupper(*word) == 'H' ||
+			toupper(*word) == 'V' ||
+			toupper(*word) == 'W' || toupper(*word) == 'Y')
+			num += 4;
+		else if (toupper(*word) == 'K')
+			num += 5;
+		else if (toupper(*word) == 'J' || toupper(*word) == 'X')
+			num += 8;
+		else if(toupper(*word)=='Q'||toupper(*word)=='Z')
+			num += 10;
+	
+	}
+	return num;
+}
