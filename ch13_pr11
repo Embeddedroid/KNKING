@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<string.h>
+#define N 100
+double compute_average_word_length(const char *sentence);
+int main(void)
+{
+	double n;
+	char str[N];
+	printf("Enter a sentence: ");
+	fgets(str,N,stdin);
+	n = compute_average_word_length(str);
+	printf("Average word length: %.1lf", n);
+	return 0;
+}
+double compute_average_word_length(const char *sentence)
+{
+	char *p = sentence;
+	double t = 0,sum=0;
+	double avg;
+	do {
+		for (; *p != ' ' && *p !='\n'; p++)
+		{
+			sum++;
+		}t++; p++;
+	} while ( *p );
+	avg = sum / t;
+	return avg;
+}
