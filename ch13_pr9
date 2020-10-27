@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+#define N 50
+
+int compute_vowel_count(const char *sentence);
+
+int main(void)
+{
+	char str[N], ch,*p = str;
+	printf("Enter a sentence: ");
+
+	while ((ch = getchar()) != '\n')
+		*p++ = ch;
+	*p = '\0';
+	int n=compute_vowel_count(str);
+	printf("Your sentence contains %d vowels\n", n);
+	return 0;
+}
+int compute_vowel_count(const char *sentence)
+{
+	int vowel = 0;
+	for (; *sentence; sentence++)
+	{
+		if (tolower(*sentence) == 'a' ||
+			tolower(*sentence) == 'e' ||
+			tolower(*sentence) == 'i' ||
+			tolower(*sentence) == 'o' ||
+			tolower(*sentence) == 'u')
+			vowel++;
+	}
+	return vowel;
+}
