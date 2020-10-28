@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<string.h>
+
+#define numbers_of_word 30
+#define numbers_of_character 20
+
+int main(void)
+{
+	char ch, vect [numbers_of_word+1][numbers_of_character+1];
+	int row = 0,column=0;
+	while ((ch = getchar()) != '\n')
+	{
+		if (ch == ' ') {
+			vect[row++][column] = '\0';
+			column = 0;
+		}
+		else if (ch == '!' || ch == '?' || ch == '.')
+		{
+			vect[row++][column] = '\0';
+			column = 0;
+			vect[row][column++]=ch;
+			vect[row][column] = '\0';
+		}
+		else
+			vect[row][column++] = ch;
+	}
+	for (int i = row - 1; i >= 0; i--)
+	{
+		printf("%s", vect[i]);
+		if (i != 0)
+			printf(" ");
+	}
+	printf("%s", vect[row]);
+
+	return 0;
+}
