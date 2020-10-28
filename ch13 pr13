@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<string.h>
+
+#define N 80
+
+void encrypt(char *message, int shift);
+
+int main(void)
+{
+	int n,shft;
+	char message[N + 1];
+	printf("Enter message to be encrypted: ");
+	fgets(message, N, stdin);
+	n=strlen(message);
+	printf("Enter shift amount (1-25): ");
+	scanf("%d", &shft);
+	encrypt(message,shft);
+	
+	return 0;
+}
+void encrypt(char *message, int shift)
+{
+	char *p = message;
+	for (; *p; p++)
+	{
+		if(*p>='A'&&*p<='Z')
+			*p=((*p - 'A') + shift) % 26 + 'A';
+		else if(*p>='a'&&*p<='z')
+			*p= ((*p - 'a') + shift) % 26 + 'a';
+	}
+	printf("Encrypted message: %s", message);
+	return;
+}
