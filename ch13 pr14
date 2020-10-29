@@ -1,0 +1,71 @@
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+#include<stdbool.h>
+
+#define N 100
+
+bool are_anagrams(const char *word1, const char *word2);
+int main(void)
+{
+	char w1[N], w2[N],ch,*p=w1,*q=w2;
+	printf("Enter first word: ");
+	while ((ch = getchar()) != '\n')
+	{
+		if (isalpha(ch))
+		{
+			*p++ = ch;
+		}
+	}
+	*p = '\0';
+	printf("Enter second word: ");
+	while ((ch = getchar()) != '\n')
+	{
+		if (isalpha(ch))
+		{
+			*q++ = ch;
+		}
+	}
+	*q = '\0';
+	
+	if (are_anagrams(w1, w2) == true)
+		printf("The words are anagrams.");
+	else
+		printf("The words are not anagrams.");
+	return 0;
+}
+bool are_anagrams(const char *word1, const char *word2)
+{
+	char lettercheck[26] = { 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' };
+	int letter1[26] = { 0 };
+	int letter2[26] = { 0 };
+	int n1 = strlen(word1), n2 = strlen(word2);
+
+	for (int i = 0; i < n1; i++)
+	{
+		for(int j=0;j<26;j++)
+		if (lettercheck[i] == *(word1))
+		{
+			letter1[i]++;
+			word1++;
+		}
+		
+	}
+	for (int i = 0; i < n2; i++)
+	{	for(int j=0;j<26;j++)
+		if (lettercheck[i] == *(word2))
+		{
+			letter2[i]++;
+			word2++;
+		}
+		
+	}
+	for (int i = 0; i < 26; i++)
+	{
+		if (letter1[i] == 0 && letter2[i] != 0)
+			return false;
+		if (letter2[i] == 0 && letter1[i] != 0)
+			return false;
+	}
+	return true;
+}
