@@ -1,0 +1,101 @@
+#include<stdio.h>
+#define N 30
+struct dna{
+	int departure_time;
+	int arrival_time;
+};
+struct dna arr[] = {
+	480,616,
+	583,712,
+	679,811,
+	767,900,
+	840,968,
+	945,1075,
+	1140,1280,
+	1295,1438
+};
+int main(void)
+{
+	int n1, n2,time;
+	printf("Enter a 24-hour time: ");
+	scanf("%d:%d", &n1, &n2);
+	time = n1 * 60 + n2;
+	int len = sizeof(arr) / sizeof(arr[0]);
+	int dpart_hr; 
+	int dpart_min;
+	int arv_hr;  
+	int arv_min;
+	char ch1[5],ch2[5];
+	for (int i = 0; i < len; i++)
+	{
+		if (arr[i].departure_time <= time && arr[i + 1].departure_time >= time)
+		{
+			if (time - arr[i].departure_time >= arr[i + 1].departure_time - time)
+			{
+				dpart_hr = arr[i+1].departure_time / 60;
+				dpart_min = arr[i+1].departure_time % 60;
+				arv_hr = arr[i+1].arrival_time / 60;
+				arv_min = arr[i+1].arrival_time % 60;
+				if (dpart_hr > 12)
+				{
+					dpart_hr -= 12;
+					strcpy(ch1, "p.m.");
+				}
+				else
+				{
+					strcpy(ch1, "a.m.");
+				}
+				if (arv_hr > 12)
+				{
+					arv_hr -= 12;
+					strcpy(ch2, "p.m.");
+				}
+				else
+				{
+					strcpy(ch2, "a.m.");
+				}
+			}
+			else
+			{
+				dpart_hr = arr[i].departure_time / 60;
+				dpart_min = arr[i].departure_time % 60;
+				arv_hr = arr[i].arrival_time / 60;
+				arv_min = arr[i].arrival_time % 60;
+				if (dpart_hr > 12)
+				{
+					dpart_hr -= 12;
+					strcpy(ch1, "p.m.");
+				}
+				else
+				{
+					strcpy(ch1, "a.m.");
+				}
+				if (arv_hr > 12)
+				{
+					arv_hr -= 12;
+					strcpy(ch2, "p.m.");
+				}
+				else
+				{
+					strcpy(ch2, "a.m.");
+				}
+			}
+		}
+	}
+	if (dpart_min < 10&&arv_min<10)
+	{
+		printf("Closest departure time is %d:0%d %s, arrving at %d:0%d %s", dpart_hr, dpart_min, ch1, arv_hr, arv_min, ch2);
+	}
+	else if (dpart_min < 10)
+	{
+		printf("Closest departure time is %d:0%d %s, arrving at %d:%d %s", dpart_hr, dpart_min, ch1, arv_hr, arv_min, ch2);
+	}
+	else if (arv_min < 10)
+	{
+		printf("Closest departure time is %d:%d %s, arrving at %d:0%d %s", dpart_hr, dpart_min, ch1, arv_hr, arv_min, ch2);
+	}
+	else
+		printf("Closest departure time is %d:%d %s, arrving at %d:%d %s", dpart_hr, dpart_min, ch1, arv_hr, arv_min, ch2);
+
+	return 0;
+}
