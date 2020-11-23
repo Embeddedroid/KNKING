@@ -1,0 +1,42 @@
+#include <stdio.h>
+struct node {
+	int data;
+	struct node *next;
+};
+
+void addFirst(struct node *list, int n)
+{
+	if (list == NULL)
+	{
+		return;
+	}
+	struct node *newnode = malloc(sizeof(struct node));
+	if (newnode = NULL)
+	{
+		return;
+	}
+	newnode->data = n;
+	newnode->next = list->next;
+	list->next = newnode;
+}
+int main(void)
+{
+	struct node *first=malloc(sizeof(struct node));
+	
+	first->next = NULL;
+
+	addFirst(first,10);
+	addFirst(first, 20);
+	addFirst(first, 30);
+	struct node *p;
+
+	struct node *temp;
+
+	p = first;
+	while (p != NULL)
+	{
+		temp = p;
+		p = p->next;
+		free(temp);
+	}
+}
