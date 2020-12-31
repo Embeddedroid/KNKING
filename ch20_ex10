@@ -1,0 +1,32 @@
+#include <stdio.h>
+// n 과 같은 비트를 가진 unsigned int 를 return 함
+// return 값은 n에서 뒤집힘
+#define SIZE (sizeof(unsigned int)*(8))
+unsigned int reverse_bits(unsigned int n)
+{
+	
+	int i;
+	unsigned int temp = n;
+	for (i = 0; i < SIZE; i++)
+	{
+		if (((temp >> (SIZE-1- i))&1) == 1)
+		{
+			n|=(1 << (i));
+		}
+		else
+		{
+			if(((n>>i)&1)==1)
+				n = n & (n^(~n | (1 << i)));
+		}
+	}
+	return n;
+}
+
+int main(void)
+{
+	unsigned int n;
+	scanf("%x", &n);
+
+	printf("%x", reverse_bits(n));
+	return 0;
+}
